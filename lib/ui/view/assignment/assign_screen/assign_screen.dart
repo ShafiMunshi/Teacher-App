@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +24,10 @@ class AssignScreen extends StatefulWidget {
 }
 
 class _AssignScreenState extends State<AssignScreen> {
+  TextEditingController _detail = TextEditingController();
   File? _image;
+  String imageUrl = '';
+
   Future getImage(ImageSource source) async {
     final image = await ImagePicker().pickImage(source: source);
     if (image == null) return;
@@ -30,6 +35,35 @@ class _AssignScreenState extends State<AssignScreen> {
     setState(() {
       this._image = imageTemporary;
     });
+  }
+
+  // chooseimagefromGallery(ImageSource source) async {
+  //   final ImagePicker _picker = ImagePicker();
+  //   _image = await _picker.pickImage(source: source);
+  //   setState(() {});
+  // }
+
+  writeData() async {
+    File imgFile = File(_image!.path);
+    FirebaseStorage _storage = FirebaseStorage.instance;
+    UploadTask _uploadTask =
+        _storage.ref('images').child(_image!.path).putFile(imgFile);
+
+    TaskSnapshot snapshot = await _uploadTask;
+    imageUrl = await snapshot.ref.getDownloadURL();
+
+    CollectionReference _data =
+        FirebaseFirestore.instance.collection("cmt-5th-1st");
+    print(imageUrl);
+    print('Hello bro');
+
+    _data
+        .add({
+          'image': imageUrl,
+          'detail': _detail.text,
+        })
+        .then((value) => print('User info added'))
+        .catchError((error) => print("Failed to add user: $error"));
   }
 
   TextEditingController _assign = TextEditingController();
@@ -87,7 +121,7 @@ class _AssignScreenState extends State<AssignScreen> {
                   alignment: Alignment.center,
                   child: _image != null
                       ? Image.file(
-                          _image!,
+                          File(_image!.path),
                           fit: BoxFit.cover,
                         )
                       : Image.asset('assets/icons/gallery.png')),
@@ -161,7 +195,7 @@ class _AssignScreenState extends State<AssignScreen> {
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: TextFormField(
-                  controller: _assign,
+                  controller: _detail,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   textCapitalization: TextCapitalization.sentences,
@@ -178,9 +212,7 @@ class _AssignScreenState extends State<AssignScreen> {
                 var snackBar = SnackBar(content: Text('Assignment Uploaded.'));
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-                Timer(Duration(seconds: 3), () {
-                  Navigator.pop(context);
-                });
+                writeData();
               }),
             ],
           ),

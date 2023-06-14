@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:teacher_management/ui/view/assignment/assignement.dart';
 import 'package:teacher_management/ui/view/attendence/attendence.dart';
 import 'package:teacher_management/ui/view/daily_test/daily_test.dart';
+import 'package:teacher_management/ui/view/demo/demo_screen.dart';
+import 'package:teacher_management/ui/view/demo/ex.dart';
 import 'package:teacher_management/ui/view/notice/notice.dart';
 import 'package:teacher_management/ui/view/time_table/time_table.dart';
 
@@ -46,8 +48,10 @@ class HomeScreen extends StatelessWidget {
                               SizedBox(
                                 height: 90.h,
                                 width: 75.w,
-                                child: Image.asset('assets/images/phooto.jpg',
-                                    fit: BoxFit.cover),
+                                child: Image.asset(
+                                  'assets/images/khaled.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                               SizedBox(
                                 width: 25.w,
@@ -116,7 +120,9 @@ class HomeScreen extends StatelessWidget {
                       homeBtn('Daily Test', 'assets/icons/test.png', () {
                         Get.to(DailyTest());
                       }),
-                      homeBtn('Messages', 'assets/icons/msg2.png', () {}),
+                      homeBtn('Messages', 'assets/icons/msg2.png', () {
+                        // Get.to();
+                      }),
                       homeBtn('Marks', 'assets/icons/time.png', () {
                         Get.to(TimeTable());
                       }),
@@ -143,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                     height: 8.h,
                   ),
                   tileCard(
-                      'Operating System -01',
+                      'Java Programming -01',
                       'Department: Computer\n5th/1st     Time: 9.45',
                       'assets/icons/time.png')
                 ],

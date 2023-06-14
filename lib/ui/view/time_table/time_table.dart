@@ -79,7 +79,7 @@ class TimeTable extends StatelessWidget {
                           elevation: 5,
                           child: ListTile(
                             leading: SizedBox(
-                              child: Image.asset('assets/icons/time.png'), //
+                              child: Image.asset('assets/icons/mark1.png'), //
                             ),
                             title: Text(sublists[index]),
                             subtitle:
@@ -115,7 +115,7 @@ class TimeTable extends StatelessWidget {
                           elevation: 5,
                           child: ListTile(
                             leading: SizedBox(
-                              child: Image.asset('assets/icons/time.png'), //
+                              child: Image.asset('assets/icons/mark1.png'), //
                             ),
                             title: Text(sublists[index]),
                             subtitle:

@@ -95,7 +95,7 @@ class DailyTest extends StatelessWidget {
 
                         leading: SizedBox(
 
-                          child: Image.asset('assets/icons/time.png'), //
+                          child: Image.asset('assets/icons/daily.png'), //
                         ),
                         title: Text(sublists[index]),
                         subtitle:

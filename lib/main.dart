@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme.apply(),
           ),
         ),
-        home: HomeScreen(),
+        home: SplashScreen(),
         // TODO - change this homescreen to splashcreen
-        // initialRoute: splash,
+        initialRoute: splash,
         getPages: getpages,
       ),
     );
