@@ -12,7 +12,7 @@ class Data extends StatefulWidget {
 
 class _DataState extends State<Data> {
   final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('users').snapshots();
+      FirebaseFirestore.instance.collection('students').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

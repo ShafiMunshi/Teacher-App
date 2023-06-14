@@ -115,16 +115,17 @@ class _AssignScreenState extends State<AssignScreen> {
                 height: 10.h,
               ),
               Container(
-                  height: 150.h,
-                  width: 180.h,
-                  color: Colors.grey[300],
-                  alignment: Alignment.center,
-                  child: _image != null
-                      ? Image.file(
-                          File(_image!.path),
-                          fit: BoxFit.cover,
-                        )
-                      : Image.asset('assets/icons/gallery.png')),
+                height: 150.h,
+                width: 180.h,
+                color: Colors.grey[300],
+                alignment: Alignment.center,
+                child: _image != null
+                    ? Image.file(
+                        File(_image!.path),
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset('assets/icons/gallery.png'),
+              ),
               SizedBox(
                 height: 10.h,
               ),
@@ -158,6 +159,7 @@ class _AssignScreenState extends State<AssignScreen> {
                                       'From Galley', 'assets/icons/gallery.png',
                                       () {
                                     getImage(ImageSource.gallery);
+                                    setState(() {});
                                     if (_image != null) {
                                       print('A image uploaded');
                                     }
